@@ -36,10 +36,6 @@ import com.reecedunn.espeak.R;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Multi-select preference with a custom dialog that includes explicit
- * Select All / Deselect All buttons alongside OK/Cancel.
- */
 public class SupportedLanguagesPreference extends MultiSelectListPreference {
     private CharSequence[] mDialogEntryValues;
     private final Set<String> mNewValues = new HashSet<String>();
