@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:text="@string/resetToDefault" />
+            android:text="@string/resetRateToDefault" />
 
     </LinearLayout>
 
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:text="@string/resetToDefault" />
+            android:text="@string/resetPitchToDefault" />
 
     </LinearLayout>
 
@@ -127,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:text="@string/resetToDefault" />
+            android:text="@string/resetRangeToDefault" />
 
     </LinearLayout>
 
@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:text="@string/resetToDefault" />
+            android:text="@string/resetVolumeToDefault" />
 
     </LinearLayout>
 

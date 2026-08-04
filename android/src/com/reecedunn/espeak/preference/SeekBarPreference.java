@@ -199,6 +199,10 @@ public class SeekBarPreference extends DialogPreference
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
+                // After the user has let go of the slider, the new value is
+                // persisted to ensure that eSpeak is using the new value the
+                // next time e.g. TalkBack reads part of the UI.
+
                 persistSettings(
                     mRate.getProgress() + mRateMin,
                     mPitch.getProgress() + mPitchMin,
@@ -224,6 +228,10 @@ public class SeekBarPreference extends DialogPreference
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
+                // After the user has let go of the slider, the new value is
+                // persisted to ensure that eSpeak is using the new value the
+                // next time e.g. TalkBack reads part of the UI.
+
                 persistSettings(
                     mRate.getProgress() + mRateMin,
                     mPitch.getProgress() + mPitchMin,
@@ -249,6 +257,10 @@ public class SeekBarPreference extends DialogPreference
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
+                // After the user has let go of the slider, the new value is
+                // persisted to ensure that eSpeak is using the new value the
+                // next time e.g. TalkBack reads part of the UI.
+
                 persistSettings(
                     mRate.getProgress() + mRateMin,
                     mPitch.getProgress() + mPitchMin,
@@ -274,6 +286,10 @@ public class SeekBarPreference extends DialogPreference
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
+                // After the user has let go of the slider, the new value is
+                // persisted to ensure that eSpeak is using the new value the
+                // next time e.g. TalkBack reads part of the UI.
+
                 persistSettings(
                     mRate.getProgress() + mRateMin,
                     mPitch.getProgress() + mPitchMin,
@@ -408,6 +424,9 @@ public class SeekBarPreference extends DialogPreference
     {
         switch (which) {
             case DialogInterface.BUTTON_POSITIVE:
+                // Update the last saved values so this will be persisted when
+                // the dialog is dismissed.
+
                 mOldRate = mRate.getProgress() + mRateMin;
                 mOldRateBoost = mRateBoost.isChecked();
                 mOldPitch = mPitch.getProgress() + mPitchMin;
@@ -421,6 +440,22 @@ public class SeekBarPreference extends DialogPreference
     @Override
     public void onDismiss(DialogInterface dialog)
     {
+        // There are 3 ways to dismiss a dialog:
+        //   1.  Pressing the OK (positive) button.
+        //   2.  Pressing the Cancel (negative) button.
+        //   3.  Pressing the Back button.
+        //
+        // For [1], the new values needs to be persisted. For [2] and [3], the
+        // old values needs to be persisted (so the last saved values are
+        // restored). As there is no easy way to override the Dialog's back
+        // button pressed handler, the following approach is used:
+        //
+        // 1.  If the user presses the OK button, the last saved values are
+        //     updated to be the new values (see the onClick handler).
+        //
+        // 2.  In all cases, the last saved values are persisted when the dialog
+        //     is closed (in this onDismiss handler).
+
         persistSettings(mOldRate, mOldPitch, mOldRange, mOldVol, mOldRateBoost);
 
         mRateCurrent = mOldRate;
